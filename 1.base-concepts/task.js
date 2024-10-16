@@ -1,4 +1,5 @@
 "use strict"
+
 const PERCENTS = 100
 const MONTHS = 12
 
