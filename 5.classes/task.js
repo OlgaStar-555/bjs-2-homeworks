@@ -5,6 +5,10 @@ class PrintEditionItem {
     set state(newState) {
         if (newState >= 0 && newState <= PrintEditionItem.MAX_STATE) {
             this._state = newState;
+        } else if(newState < 0) {
+            this._state = 0
+        } else if (newState > PrintEditionItem.MAX_STATE) {
+            this._state = PrintEditionItem.MAX_STATE
         }
     }
     get state() {
@@ -27,7 +31,7 @@ class PrintEditionItem {
     fix() {
         const FIX_KF = 1.5;
         if (this.state > 0) {
-            this.state = Math.min(PrintEditionItem.MAX_STATE, Math.floor((this.state * FIX_KF)));
+            this.state = Math.floor(this.state * FIX_KF);
         }
     }
 }
