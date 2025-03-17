@@ -4,7 +4,7 @@ class PrintEditionItem {
 
     set state(newState) {
         if (newState >= 0 && newState <= PrintEditionItem.MAX_STATE) {
-            this._state = newState;
+            this._state = Math.round(newState);
         } else if(newState < 0) {
             this._state = 0
         } else if (newState > PrintEditionItem.MAX_STATE) {
@@ -31,7 +31,7 @@ class PrintEditionItem {
     fix() {
         const FIX_KF = 1.5;
         if (this.state > 0) {
-            this.state = Math.floor(this.state * FIX_KF);
+            this.state = this.state * FIX_KF;
         }
     }
 }
