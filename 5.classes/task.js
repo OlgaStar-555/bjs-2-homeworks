@@ -1,16 +1,16 @@
 class PrintEditionItem {
     static MAX_STATE = 100;
-    #TYPE = null;
 
     set state(newState) {
-        if (newState >= 0 && newState <= PrintEditionItem.MAX_STATE) {
-            this._state = Math.round(newState);
-        } else if(newState < 0) {
+        if (newState < 0) {
             this._state = 0
         } else if (newState > PrintEditionItem.MAX_STATE) {
             this._state = PrintEditionItem.MAX_STATE
+        } else {
+            this._state = newState
         }
     }
+
     get state() {
         return this._state;
     }
@@ -24,20 +24,17 @@ class PrintEditionItem {
         this.releaseDate = releaseDate;
         this.pagesCount = pagesCount;
 
-        this.type = this.#TYPE;
+        this.type = null;
         this.state = PrintEditionItem.MAX_STATE;
     }
 
     fix() {
         const FIX_KF = 1.5;
-        if (this.state > 0) {
-            this.state = this.state * FIX_KF;
-        }
+        this.state = this.state * FIX_KF;
     }
 }
 
 class Magazine extends PrintEditionItem {
-    #TYPE = 'magazine';
 
     constructor(
         name,
@@ -46,12 +43,11 @@ class Magazine extends PrintEditionItem {
 
         super(name, releaseDate, pagesCount);
 
-        this.type = this.#TYPE;
+        this.type = 'magazine';
     }
 }
 
 class Book extends PrintEditionItem {
-    #TYPE = 'book';
 
     constructor(
         author,
@@ -61,13 +57,12 @@ class Book extends PrintEditionItem {
 
         super(name, releaseDate, pagesCount);
 
-        this.type = this.#TYPE;
+        this.type = 'book';
         this.author = author;
     }
 }
 
 class NovelBook extends Book {
-    #TYPE = 'novel';
 
     constructor(
         author,
@@ -77,13 +72,12 @@ class NovelBook extends Book {
 
         super(author, name, releaseDate, pagesCount);
 
-        this.type = this.#TYPE;
+        this.type = 'novel';
     }
 }
 
 
 class FantasticBook extends Book {
-    #TYPE = 'fantastic';
 
     constructor(
         author,
@@ -93,12 +87,11 @@ class FantasticBook extends Book {
 
         super(author, name, releaseDate, pagesCount)
 
-        this.type = this.#TYPE;
+        this.type = 'fantastic';
     }
 }
 
 class DetectiveBook extends Book {
-    #TYPE = 'detective';
 
     constructor(
         author,
@@ -108,7 +101,7 @@ class DetectiveBook extends Book {
 
         super(author, name, releaseDate, pagesCount);
 
-        this.type = this.#TYPE;
+        this.type = 'detective';
     }
 }
 
